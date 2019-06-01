@@ -1,0 +1,20 @@
+let
+    var x : int;
+    var a: char
+in
+    begin
+        x := 3;
+        let
+            var var1: t;
+            var a : int;
+            var b : int
+        in
+            if( var1 ) then
+                begin
+                    a := a+1;
+                    b := "hola"
+                end
+                else
+                    x := 3 * 2
+    end
+
