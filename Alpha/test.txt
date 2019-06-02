@@ -1,20 +1,14 @@
 let
-    var x : int;
-    var a: char
+    var i : int
 in
     begin
-        x := 3;
-        let
-            var var1: t;
-            var a : int;
-            var b : int
-        in
-            if( var1 ) then
-                begin
-                    a := a+1;
-                    b := "hola"
-                end
-                else
-                    x := 3 * 2
+    let
+        var j: bool
+    in
+        print(i);
+    ;
+    while i > 3 do
+        print(i);
+    ;
+    print(i);
     end
-

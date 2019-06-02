@@ -1,6 +1,5 @@
 import generated.Parser2;
 import generated.Parser2BaseVisitor;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import java.util.ArrayList; // import the ArrayList class
 public class GenCode extends Parser2BaseVisitor<Object> {
     int index = 0;

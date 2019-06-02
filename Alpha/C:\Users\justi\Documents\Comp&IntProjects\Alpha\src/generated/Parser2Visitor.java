@@ -67,13 +67,6 @@ public interface Parser2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBeginSCAST(Parser2.BeginSCASTContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code printSCAST}
-	 * labeled alternative in {@link Parser2#singleCommand}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPrintSCAST(Parser2.PrintSCASTContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code declarationAST}
 	 * labeled alternative in {@link Parser2#declaration}.
 	 * @param ctx the parse tree

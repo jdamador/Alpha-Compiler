@@ -6,34 +6,35 @@ import java.util.LinkedList;
  */
 public class TablaSimbolos {
     private LinkedList<Object> tabla;
-    private int nivelActual;
-    class Ident{ // Indentificadores
+    private int levelActual;
+    // New identifier element.
+    class Ident{ 
         Token tok;
-        String type; // Esto problemente cambie a un tipo más estructurado
-        int nivel;
+        String type;  //It saves three types of data (boolean, string and integer).
+        int level;
         Object valor;
         public Ident(Token t, String tp){
             tok = t;
             type = tp;
-            nivel = nivelActual;
+            level = levelActual;
             valor = new Object();
         }
 
-        public void setValue(Object v){
-            valor = v;
-            if( v instanceof String){
-                this.type = "String";
+        public boolean setValue(Object data) {
+            // Set value to exist variable.
+            if ((data instanceof String && this.type.equals("String")) || (data instanceof Integer && this.type.equals("Integer")) || (data instanceof Boolean && this.type.equals("Boolean"))){
+                this.valor = data;
+                return  true;
             }else{
-                this.type = "Integer";
+                return false;
             }
         }
-
     }
 
     public TablaSimbolos()
     {
         tabla = new LinkedList<Object>();
-        this.nivelActual=-1;
+        this.levelActual=-1;
     }
 
     public void insertar(Token id, String tipo)
@@ -42,39 +43,35 @@ public class TablaSimbolos {
         tabla.add(i);
     }
 
-    // Buscar esta mal, hay que recorrer la lista alrevez
     public Ident buscar(String nombre)
     {
         Ident temp=null;
-        for (int i = tabla.size()-1; i >= 0; i--) {
-            if (((Ident) tabla.get(i)).tok.getText().equals(nombre))
+        for (int i = tabla.size() -1; i >= 0; i--) {
+            if (((Ident) tabla.get(i)).tok.getText().equals(nombre)) {
                 temp = ((Ident) tabla.get(i));
                 break;
+            }
         }
         return temp;
     }
 
     public void openScope(){
-        nivelActual++;
+        levelActual++;
     }
 
     public void closeScope(){
-        // Hay que sacar todos los identificadores del nivel que se esta cerrando
         for (int i = 0; i < tabla.size(); i++) {
-            if(((Ident) tabla.get(i)).nivel == nivelActual){
+            if(((Ident) tabla.get(i)).level == levelActual){
                 tabla.remove(i);
             }
         };
-        nivelActual--;
+        levelActual--;
     }
-    // Falta openScope()
-
-    // Falta closeScope()
 
     public void imprimir() {
         for (int i = 0; i < tabla.size(); i++) {
             Token s = (Token) ((Ident) tabla.get(i)).tok;
-            System.out.println("Nombre: " + s.getText() + "-" + ((Ident) tabla.get(i)).nivel+ "-" + ((Ident) tabla.get(i)).valor + "-" + ((Ident) tabla.get(i)).type); // Imprimir nivel y nivel actual
+            System.out.println("Nombre: " + s.getText() + "-" + ((Ident) tabla.get(i)).level+ "-" + ((Ident) tabla.get(i)).valor + "-" + ((Ident) tabla.get(i)).type); // Imprimir level y level actual
             /*if (s.getType() == 0) System.out.println("\tTipo: Indefinido");
             else if (s.getType() == 1) System.out.println("\tTipo: Integer\n");
             else if (s.getType() == 2) System.out.println("\tTipo: String\n");*/

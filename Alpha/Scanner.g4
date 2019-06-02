@@ -1,6 +1,6 @@
 lexer grammar Scanner;
 
-//símbolos
+// Symbols.
 PyCOMA  : ';' ;
 ASSIGN  : ':=';
 PIZQ    : '(';
@@ -11,8 +11,15 @@ SUM     : '+';
 SUB     : '-';
 MUL     : '*';
 DIV     : '/';
+SMALLER : '<';
+BIGGER  : '>';
+SMALEQ  : '>=';
+BIGEQ   : '<=';
+EQUAL   : '==';
 
-//palabras reservadas
+
+
+// Key word for structures.
 IF      : 'if' ;
 WHILE   : 'while' ;
 LET     : 'let';
@@ -24,15 +31,19 @@ BEGIN   : 'begin';
 END     : 'end';
 CONST   : 'const';
 VAR     : 'var';
+PRINT   : 'print';
 
+// Complex expressions
 ID : LETTER (LETTER|DIGIT)* ;
 NUM : DIGIT DIGIT* ;
-
+BOOL    : 'true'| 'false';
 STRING        :   '"' ('""'|~'"')* '"' ;
 SPECIAL_STRING        :   '"''\\''"' ('""'|~'"')* '\\''"''"' ;
 
+// Rules for build string and numbers.
 fragment LETTER : 'a'..'z' | 'A'..'Z';
 fragment DIGIT : '0'..'9' ;
 
+// Skip white spaces.
 WS  :   [ \t\n\r]+ -> skip ;
 

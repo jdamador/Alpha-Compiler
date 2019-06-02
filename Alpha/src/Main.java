@@ -12,17 +12,17 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        Scanner inst = null;
-        Parser2 parser = null;
+        Scanner inst;
+        Parser2 parser;
         ParseTree tree=null;
 
         //ANTLRInputStream input=null;
-        CharStream input=null;
-        CommonTokenStream tokens = null;
-        MyErrorListener errorListener = null;
+        CharStream input;
+        CommonTokenStream tokens;
+        MyErrorListener errorListener;
         try {
             //input = new ANTLRInputStream(new FileReader("test.txt"));
-            input = CharStreams.fromFileName("test2.txt");
+            input = CharStreams.fromFileName("test.txt");
             inst = new Scanner(input);
             tokens = new CommonTokenStream(inst);
             parser = new Parser2(tokens);
@@ -37,37 +37,36 @@ public class Main {
 
             try {
                 tree = parser.program();
+
+                // Create a contextual visitor.
                 MiVisitor mv = new MiVisitor();
-                //mv.visit(tree); // Visita el árbol
-                GenCode mv2 = new GenCode();
-                mv2.visit(tree);
+
+                // Visit the tree.
+                mv.visit(tree);
+
+                // Check for syntactic errors
+                if(errorListener.hasErrors())
+                    System.out.println(errorListener.toString());
+                else
+                // Check for contextual errors.
+                    if(mv.errors.size()>0)
+                        for (String i: mv.errors)
+                            System.out.println(i);
+                // If all is correct, execute the interpreter.
+                    else{
+                        InterpreterVisitor iv = new InterpreterVisitor();
+                        iv.visit(tree);
+                    }
+                System.out.println("Compilation successful!!!");
             }
-            catch(RecognitionException e){
+            catch(RecognitionException e) {
                 System.out.println("Error!!!");
                 e.printStackTrace();
-            }
-            if (errorListener.hasErrors() == false) {
-                System.out.println("Compilación Exitosa!!\n");
-                java.util.concurrent.Future<JFrame> treeGUI = org.antlr.v4.gui.Trees.inspect(tree, parser);
-                treeGUI.get().setVisible(true);
-            }
-            else {
-                System.out.println("Compilación Fallida!!\n");
-                System.out.println(errorListener.toString());
             }
 
         }
         catch(Exception e){System.out.println("No hay archivo");e.printStackTrace();}
-        /*List<Token> lista = (List<Token>) inst.getAllTokens();
 
-        for (Token t : lista)
-
-            System.out.println(t.getType() + ":" + t.getText() + "\n");
-
-        inst = new Scanner(input);
-        //inst.reset();*/
-
-        //Cambiar los listeners de errores sintácticos
     }
 
 }
