@@ -180,82 +180,132 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
         }
         return  buildExpression(result);
     }
-
+    // Check the all sections from the expression and apply the operations.
     private Object buildExpression(ArrayList<Object> result) {
 
+        // If in only one value return it.
         if(result.size() == 1)
             return  result.get(0);
         else{
+
+            // Check if is a string union.
             checkConcat(result);
+            // If the result is only a value return it.
             if(result.size() == 1)
                 return  result.get(0);
+
+            // Do all multiplications or division.
             checkMul(result);
+            // Do all sums or rest.
             checkSum(result);
+            // If the result is only a value return it.
             if(result.size() == 1)
                 return  result.get(0);
+
+            // Check if there are some comparision.
             checkComp(result);
+            // If the value is only a value return it.
             if(result.size() == 1)
                 return  result.get(0);
+
+            // Check if there are some connector expression.
             checkMoreComp(result);
         }
         return result.get(0);
     }
+    // Check if there are connector expression like || or &&.
     private void checkMoreComp(ArrayList<Object> result){
+
+        // Go through the list and check the operators.
         int index = 1;
         while(index < result.size()){
+
+            // Apply [ OR ]  connector.
             if(result.get(index).equals("||")){
                 applyOperation(result, index, "||");
             }
+
+            // Apply [ AND ] connector.
             else if(result.get(index).equals("&&")){
                 applyOperation(result, index, "&&");
-            }else{
+            }
+
+            // Go to next operator.
+            else{
                 index++;
             }
         }
     }
+    // Check if there are some comparision.
     private void checkComp(ArrayList<Object> result) {
+
+
+        // Go through the list and check the operators.
         int index = 1;
         while(index < result.size()){
+
+            // Apply smaller operator.
             if(result.get(index).equals("<")){
                 applyOperation(result, index, "<");
             }
+
+            // Apply bigger operator.
             else if(result.get(index).equals(">")){
                 applyOperation(result, index, ">");
             }
+
+            // Apply smaller or equal operator.
             else if(result.get(index).equals("<=")){
                 applyOperation(result, index, "<=");
             }
+
+            // Apply bigger or equal operator.
             else if(result.get(index).equals(">=")){
                 applyOperation(result, index, ">=");
             }
+
+            // Apply equal operator.
             else if(result.get(index).equals("==")){
                 applyOperation(result, index, "==");
-            } else{
-                index++;
             }
-        }
-    }
 
-    private void checkMul(ArrayList<Object> result) {
-        int index = 1;
-        while(index < result.size()){
-            if(result.get(index).equals("*")) {
-                applyOperation(result, index, "*");
-            }
-            else
-            if(result.get(index).equals("/")){
-                applyOperation(result, index, "/");
-            }
+            // Got to next operator.
             else{
                 index++;
             }
         }
     }
 
+    // Check if there are some multiplication or division.
+    private void checkMul(ArrayList<Object> result) {
+
+        // Go through the list and check the operators.
+        int index = 1;
+        while(index < result.size()){
+
+            // Apply multiplication operator.
+            if(result.get(index).equals("*")) {
+                applyOperation(result, index, "*");
+            }
+
+            // Apply division operator.
+            else if(result.get(index).equals("/")){
+                applyOperation(result, index, "/");
+            }
+
+            // Go to next operator.
+            else{
+                index++;
+            }
+        }
+    }
+
+    // Apply all operator for each pair of values.
     private void applyOperation(ArrayList<Object> result, int index, String c) {
         switch (c) {
             case ">":
                 result.set(index - 1, Integer.parseInt(result.get(index - 1).toString()) > Integer.parseInt(result.get(index + 1).toString()));
+                // Remove the values after the result.
                 result.remove(index);
                 result.remove(index);
                 return ;
@@ -321,22 +371,31 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
         }
     }
 
+    // Check if there are some rest or sum.
     private void checkSum(ArrayList<Object> result) {
+
+        // Go through the list and check the operators.
         int index = 1;
         while(index < result.size()){
+
+            // Apply sum operator.
             if(result.get(index).equals("-")) {
                 applyOperation(result, index, "-");
             }
-            else
-            if(result.get(index).equals("+")){
+
+            // Apply rest operator.
+            else if(result.get(index).equals("+")){
                 applyOperation(result, index, "+");
             }
+
+            // Go to next operator.
             else{
                 index++;
             }
         }
     }
 
+    //Check if it is a concat between a string with some element.
     private void checkConcat(ArrayList<Object> result) {
         Boolean allow = false;
         // Check if there are some string.
@@ -391,6 +450,7 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
     // Visit the primitive rule String.
     @Override
     public Object visitStringPrimaryExpAST(Parser2.StringPrimaryExpASTContext ctx) {
+
         // Return string content.
         return ctx.STRING().getText().substring(1,ctx.STRING().getText().length()-1);
     }
@@ -398,6 +458,7 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
     // Visit group rule.
     @Override
     public Object visitGroupPEAST(Parser2.GroupPEASTContext ctx) {
+
         // Return the result from the expression.
         return visit(ctx.expression());
     }
@@ -405,12 +466,14 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
     // Visit operation rule.
     @Override
     public Object visitOperator(Parser2.OperatorContext ctx) {
+
         // Return the operator.
         return ctx.getText();
     }
 
     // Visit print rule.
     @Override public Object visitPrintSCAST(Parser2.PrintSCASTContext ctx) {
+
         System.out.println(visit(ctx.expression()));
         return null;
     }
@@ -418,6 +481,7 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
     // Visit boolean rule.
     @Override
     public Object visitBoolPrimaryExpAST(Parser2.BoolPrimaryExpASTContext ctx){
+
         return Boolean.parseBoolean(ctx.BOOL().getText());
     }
 
