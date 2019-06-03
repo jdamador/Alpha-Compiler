@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1369d1e4-3217-4135-a404-1faea26c92fc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InterpreterVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parser2.g4" beforeDir="false" afterPath="$PROJECT_DIR$/Parser2.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scanner.g4" beforeDir="false" afterPath="$PROJECT_DIR$/Scanner.g4" afterDir="false" />
@@ -13,7 +9,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Parser2.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Scanner.interp" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Scanner.interp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Alpha/generated/Scanner.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Alpha/generated/Scanner.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GenCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InterpreterVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InterpreterVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MiVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MiVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TablaSimbolos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TablaSimbolos.java" afterDir="false" />
@@ -40,41 +36,32 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="DockManager">
     <window id="3">
       <content type="file-editors">
         <state>
-          <splitter split-orientation="horizontal" split-proportion="0.5">
-            <split-first>
-              <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-                <file pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/Parser2.g4">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="423">
-                        <caret line="31" column="44" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="44" />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-first>
-            <split-second>
-              <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-                <file pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/test.txt">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="162">
-                        <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="15" />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-second>
-          </splitter>
+          <leaf>
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/Parser2.g4">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="533">
+                    <caret line="35" column="96" selection-start-line="35" selection-start-column="96" selection-end-line="35" selection-end-column="96" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/test.txt">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="306">
+                    <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
         </state>
       </content>
     </window>
@@ -83,7 +70,26 @@
     <favorites_list name="Alpha" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/InterpreterVisitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="59">
+              <caret line="198" column="34" selection-start-line="198" selection-start-column="34" selection-end-line="198" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Scanner.g4">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -94,33 +100,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>setV</find>
-      <find>primaryEx</find>
-      <find>call</find>
-      <find>ILOAD</find>
-      <find>varA</find>
-      <find>prim</find>
-      <find>ifSCAST</find>
-      <find>whileSCAST</find>
-      <find>assignSCAST</find>
-      <find>callS</find>
-      <find>if</find>
-      <find>while</find>
-      <find>lets</find>
-      <find>begi</find>
-      <find>singleCommand</find>
-      <find>nivel</find>
-      <find>insertar</find>
-      <find>visitVarAST</find>
-      <find>typeDenoter</find>
-      <find>system</find>
-      <find>Print</find>
       <find>inser</find>
-      <find>System</find>
       <find>sys</find>
       <find>expres</find>
       <find>value</find>
       <find>primaryExp</find>
+      <find>Operat</find>
+      <find>System</find>
+      <find>typeD</find>
+      <find>Syst</find>
+      <find>unde</find>
+      <find>remove</find>
+      <find>undef</find>
+      <find>Assin</find>
+      <find>close</find>
+      <find>express</find>
+      <find>print</find>
+      <find>expression</find>
+      <find>Id</find>
+      <find>loo</find>
+      <find>Assig</find>
+      <find>Express</find>
+      <find>buil</find>
+      <find>ID</find>
+      <find>assign</find>
+      <find>Syste</find>
+      <find>allow</find>
+      <find>IF</find>
+      <find>SEMANTIC ERROR: Undefined identifier</find>
+      <find>bool</find>
+      <find>Sys</find>
     </findStrings>
     <replaceStrings>
       <replace>level</replace>
@@ -139,22 +148,20 @@
         <option value="$PROJECT_DIR$/test2.txt" />
         <option value="$PROJECT_DIR$/src/GenCode.java" />
         <option value="$PROJECT_DIR$/src/generated/Parser2Visitor.java" />
+        <option value="$PROJECT_DIR$/src/generated/Parser2BaseVisitor.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/MiVisitor.java" />
+        <option value="$PROJECT_DIR$/src/TablaSimbolos.java" />
         <option value="$PROJECT_DIR$/Scanner.g4" />
         <option value="$PROJECT_DIR$/Parser2.g4" />
-        <option value="$PROJECT_DIR$/src/generated/Parser2BaseVisitor.java" />
-        <option value="$PROJECT_DIR$/src/TablaSimbolos.java" />
-        <option value="$PROJECT_DIR$/src/MiVisitor.java" />
-        <option value="$PROJECT_DIR$/test.txt" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/InterpreterVisitor.java" />
+        <option value="$PROJECT_DIR$/test.txt" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1" />
-    <option name="y" value="-1" />
-    <option name="width" value="1338" />
-    <option name="height" value="770" />
+    <option name="width" value="668" />
+    <option name="height" value="768" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -179,6 +186,12 @@
               <item name="Alpha" type="b2602c69:ProjectViewProjectNode" />
               <item name="Alpha" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Alpha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alpha" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="generated" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -398,17 +411,18 @@
       <workItem from="1558714135763" duration="920000" />
       <workItem from="1558736313435" duration="1194000" />
       <workItem from="1559421142304" duration="24637000" />
-      <workItem from="1559498049575" duration="295000" />
+      <workItem from="1559498049575" duration="23539000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70365000" />
+    <option name="totallyTimeSpent" value="93609000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-1" width="1338" height="770" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21840873" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2074883" />
       <window_info id="Structure" order="1" weight="0.24960998" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -417,8 +431,8 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32976827" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4047619" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36190477" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3984127" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -427,7 +441,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.4904762" />
       <window_info anchor="bottom" id="ANTLR Preview" order="11" weight="0.32857144" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32875144" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32698414" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -492,27 +506,29 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/InterpreterVisitor.java</url>
-          <line>67</line>
+          <line>391</line>
           <properties />
-          <option name="timeStamp" value="24" />
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/InterpreterVisitor.java</url>
-          <line>58</line>
+          <line>398</line>
           <properties />
-          <option name="timeStamp" value="25" />
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/InterpreterVisitor.java</url>
-          <line>226</line>
+          <line>405</line>
           <properties />
-          <option name="timeStamp" value="26" />
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/InterpreterVisitor.java</url>
-          <line>233</line>
-          <properties />
-          <option name="timeStamp" value="27" />
+          <line>372</line>
+          <properties class="InterpreterVisitor" method="visitIdPrimaryExpAST">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -576,16 +592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/antlr-4.7.1-complete.jar!/org/antlr/v4/runtime/tree/AbstractParseTreeVisitor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#347#348#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/generated/Scanner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
@@ -610,13 +616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/generated/Parser2Visitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="97" column="60" lean-forward="true" selection-start-line="97" selection-start-column="60" selection-end-line="97" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MyErrorListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -624,24 +623,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/generated/Parser2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="260" column="29" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/generated/Parser2BaseVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="111" column="7" lean-forward="true" selection-start-line="111" selection-start-column="7" selection-end-line="111" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scanner.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -656,17 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TablaSimbolos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
-          <folding>
-            <element signature="e#1664#1665#0" expanded="true" />
-            <element signature="e#1693#1694#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test2.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -674,17 +648,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/InterpreterVisitor.java">
+    <entry file="jar://$PROJECT_DIR$/antlr-4.7.1-complete.jar!/org/antlr/v4/runtime/tree/AbstractParseTreeVisitor.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1458">
-          <caret line="85" column="46" lean-forward="true" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+        <state relative-caret-position="114">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#347#348#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="821">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+          <folding>
+            <element signature="docComment;class#Main#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jrt:///usr/lib/jvm/java-11-openjdk-amd64!/java.base/java/lang/Object.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+          <folding>
+            <element signature="e#488#489#0" expanded="true" />
+            <element signature="e#522#523#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/generated/Parser2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="744" column="28" selection-start-line="744" selection-start-column="28" selection-end-line="744" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/generated/Parser2Visitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="144" column="5" lean-forward="true" selection-start-line="144" selection-start-column="37" selection-end-line="144" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MiVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        <state relative-caret-position="75">
+          <caret line="149" column="3" selection-start-line="149" selection-start-column="3" selection-end-line="152" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#visitCommandAST#0;class#MiVisitor#0" />
@@ -692,27 +704,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/TablaSimbolos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="55" column="25" lean-forward="true" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
-          <folding>
-            <element signature="docComment;class#Main#0" />
-          </folding>
+        <state relative-caret-position="-137">
+          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jrt:///usr/lib/jvm/java-11-openjdk-amd64!/java.base/java/lang/NumberFormatException.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Parser2.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="31" column="44" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="44" />
+        <state relative-caret-position="533">
+          <caret line="35" column="96" selection-start-line="35" selection-start-column="96" selection-end-line="35" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/InterpreterVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="198" column="34" selection-start-line="198" selection-start-column="34" selection-end-line="198" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scanner.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="15" />
+        <state relative-caret-position="306">
+          <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
         </state>
       </provider>
     </entry>

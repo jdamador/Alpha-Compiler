@@ -20,6 +20,7 @@ public class Main {
         CharStream input;
         CommonTokenStream tokens;
         MyErrorListener errorListener;
+
         try {
             //input = new ANTLRInputStream(new FileReader("test.txt"));
             input = CharStreams.fromFileName("test.txt");
@@ -64,9 +65,16 @@ public class Main {
                 e.printStackTrace();
             }
 
-        }
-        catch(Exception e){System.out.println("No hay archivo");e.printStackTrace();}
+            if(errorListener.hasErrors()) {
+                System.out.println("Compilation fail!!\n");
+                System.out.println(errorListener.toString());
+            }
 
+        }
+        catch(Exception e){
+            System.out.println("Error> There isn't a test file or there is a syntactic error into the test file");
+            e.printStackTrace();
+        }
     }
 
 }

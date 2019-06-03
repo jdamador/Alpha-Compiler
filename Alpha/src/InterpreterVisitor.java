@@ -43,15 +43,15 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
     public Object visitAssignSCAST(Parser2.AssignSCASTContext ctx) {
 
         // Look at if the variable exist.
-        TablaSimbolos.Ident exist = miTabla.buscar(ctx.ID().getText());
+        var exist = miTabla.buscar(ctx.ID().getText());
 
         // If it doesn't exist throw an error.
         if ( exist  == null)
             printError("SEMANTIC ERROR: Undefined identifier ",ctx.ID().getSymbol());
         // But if it exist set a new value.
-        else
+        else {
             exist.setValue(visit(ctx.expression()));
-
+        }
         return null;
     }
 
@@ -87,6 +87,8 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
         if (data != null)
             while ((boolean) data){
                 visit(ctx.singleCommand());
+
+                data = visit(ctx.expression());
             }
 
         return null;
@@ -172,16 +174,191 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
         ArrayList<Object> result = new ArrayList<>();
         // TODO: here build the expression and apply the operations.
         result.add(visit(ctx.primaryExpression(0)));
-        for (int i = 1; i < ctx.primaryExpression().size() ; i++){
+        for (int i = 1; i < ctx.primaryExpression().size() ; i++) {
             result.add(visit(ctx.operator(i-1)));
             result.add(visit(ctx.primaryExpression(i)));
         }
-        for (Object i : result
-             ) {
-            System.out.println(i);
-        }
-        return null;
+        return  buildExpression(result);
     }
+
+    private Object buildExpression(ArrayList<Object> result) {
+
+        if(result.size() == 1)
+            return  result.get(0);
+        else{
+            checkConcat(result);
+            if(result.size() == 1)
+                return  result.get(0);
+            checkMul(result);
+            checkSum(result);
+            if(result.size() == 1)
+                return  result.get(0);
+            checkComp(result);
+            if(result.size() == 1)
+                return  result.get(0);
+            checkMoreComp(result);
+        }
+        return result.get(0);
+    }
+    private void checkMoreComp(ArrayList<Object> result){
+        int index = 1;
+        while(index < result.size()){
+            if(result.get(index).equals("||")){
+                applyOperation(result, index, "||");
+            }
+            else if(result.get(index).equals("&&")){
+                applyOperation(result, index, "&&");
+            }else{
+                index++;
+            }
+        }
+    }
+    private void checkComp(ArrayList<Object> result) {
+        int index = 1;
+        while(index < result.size()){
+            if(result.get(index).equals("<")){
+                applyOperation(result, index, "<");
+            }
+            else if(result.get(index).equals(">")){
+                applyOperation(result, index, ">");
+            }
+            else if(result.get(index).equals("<=")){
+                applyOperation(result, index, "<=");
+            }
+            else if(result.get(index).equals(">=")){
+                applyOperation(result, index, ">=");
+            }
+            else if(result.get(index).equals("==")){
+                applyOperation(result, index, "==");
+            } else{
+                index++;
+            }
+        }
+    }
+
+    private void checkMul(ArrayList<Object> result) {
+        int index = 1;
+        while(index < result.size()){
+            if(result.get(index).equals("*")) {
+                applyOperation(result, index, "*");
+            }
+            else
+            if(result.get(index).equals("/")){
+                applyOperation(result, index, "/");
+            }
+            else{
+                index++;
+            }
+        }
+    }
+
+    private void applyOperation(ArrayList<Object> result, int index, String c) {
+        switch (c) {
+            case ">":
+                result.set(index - 1, Integer.parseInt(result.get(index - 1).toString()) > Integer.parseInt(result.get(index + 1).toString()));
+                result.remove(index);
+                result.remove(index);
+                return ;
+            case "<":
+                result.set(index -1, Integer.parseInt(result.get(index - 1).toString()) < Integer.parseInt(result.get(index + 1).toString()));
+                result.remove(index);
+                result.remove(index);
+                return ;
+            case ">=":
+                result.set(index -1, Integer.parseInt(result.get(index - 1).toString()) >= Integer.parseInt(result.get(index + 1).toString()));
+                result.remove(index);
+                result.remove(index);
+                return ;
+            case "<=":
+                result.set(index -1, Integer.parseInt(result.get(index - 1).toString()) <= Integer.parseInt(result.get(index + 1).toString()));
+                result.remove(index);
+                result.remove(index);
+                return ;
+            case "==":
+                result.set(index -1, Integer.parseInt(result.get(index - 1).toString()) == Integer.parseInt(result.get(index + 1).toString()));
+                result.remove(index);
+                result.remove(index);
+                return ;
+            case "+":
+                result.set(index -1, Integer.parseInt(result.get(index - 1).toString()) + Integer.parseInt(result.get(index + 1).toString()));
+                result.remove(index);
+                result.remove(index);
+
+                return ;
+            case "-":
+                result.set(index -1, Integer.parseInt(result.get(index - 1).toString()) - Integer.parseInt(result.get(index + 1).toString()));
+                result.remove(index);
+                result.remove(index);
+                return ;
+            case "*":
+                result.set(index -1, Integer.parseInt(result.get(index - 1).toString()) * Integer.parseInt(result.get(index + 1).toString()));
+                result.remove(index);
+                result.remove(index);
+                return ;
+            case "/":
+                result.set(index -1, Integer.parseInt(result.get(index - 1).toString()) / Integer.parseInt(result.get(index + 1).toString()));
+                result.remove(index);
+                result.remove(index);
+                return;
+            case "&&":
+                if(Boolean.parseBoolean(result.get(index - 1).toString()) &&  Boolean.parseBoolean(result.get(index + 1).toString()))
+                    result.set(index -1, true);
+                else
+                    result.set(index - 1, false);
+                result.remove(index);
+                result.remove(index);
+                return;
+            case "||":
+                if(Boolean.parseBoolean(result.get(index - 1).toString()) ||  Boolean.parseBoolean(result.get(index + 1).toString()))
+                    result.set(index -1, true);
+                else
+                    result.set(index - 1, false);
+                result.remove(index);
+                result.remove(index);
+                return;
+            default:
+                return ;
+        }
+    }
+
+    private void checkSum(ArrayList<Object> result) {
+        int index = 1;
+        while(index < result.size()){
+            if(result.get(index).equals("-")) {
+                applyOperation(result, index, "-");
+            }
+            else
+            if(result.get(index).equals("+")){
+                applyOperation(result, index, "+");
+            }
+            else{
+                index++;
+            }
+        }
+    }
+
+    private void checkConcat(ArrayList<Object> result) {
+        Boolean allow = false;
+        // Check if there are some string.
+        for(int i = 0; i< result.size(); i+=2)
+            if(result.get(i) instanceof  String)
+                allow =  true;
+        // Checks if there are some operation different to sum.
+        for(int i = 1; i< result.size(); i+=2) {
+            if (!result.get(i).equals("+")){
+                allow = false;
+            }
+        }
+        // Concat all elements in the list.
+        if(allow){
+            String value = "";
+            for(int i = 0; i< result.size(); i+=2)
+                value += result.get(i);
+            result.clear();
+            result.add(value);
+        }
+    }
+
 
     // Visit a primitive rule NUM.
     @Override
@@ -196,13 +373,17 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
     public Object visitIdPrimaryExpAST(Parser2.IdPrimaryExpASTContext ctx)
     {
         // Loot for the variable inside of the storage.
+
         TablaSimbolos.Ident exist = miTabla.buscar(ctx.ID().getText());
         // If it doesn't exist throw and error.
         if ( exist  == null)
-            printError("SEMANTIC ERROR: Undefined identifier ",ctx.ID().getSymbol());
-        else
-        //If it exist return its value.
+            printError("SEMANTIC ERROR: Undefined identifier ", ctx.ID().getSymbol());
+        else {
+
+            //If it exist return its value.
+            //System.out.println("Value from some variable: name >{"+ctx.ID().getText()+ "} value>{"+exist.valor+ "}");
             return exist.valor;
+        }
 
         return null;
     }
@@ -210,7 +391,6 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
     // Visit the primitive rule String.
     @Override
     public Object visitStringPrimaryExpAST(Parser2.StringPrimaryExpASTContext ctx) {
-
         // Return string content.
         return ctx.STRING().getText().substring(1,ctx.STRING().getText().length()-1);
     }
@@ -218,7 +398,6 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
     // Visit group rule.
     @Override
     public Object visitGroupPEAST(Parser2.GroupPEASTContext ctx) {
-
         // Return the result from the expression.
         return visit(ctx.expression());
     }
@@ -226,9 +405,8 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
     // Visit operation rule.
     @Override
     public Object visitOperator(Parser2.OperatorContext ctx) {
-
         // Return the operator.
-        return ctx.getText().charAt(0);
+        return ctx.getText();
     }
 
     // Visit print rule.
@@ -237,6 +415,13 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
         return null;
     }
 
+    // Visit boolean rule.
+    @Override
+    public Object visitBoolPrimaryExpAST(Parser2.BoolPrimaryExpASTContext ctx){
+        return Boolean.parseBoolean(ctx.BOOL().getText());
+    }
+
+    // Add errors to list Errors.
     private void printError(String msg, Token t){
         errors.add(msg +
                 t.getText() + "(" +

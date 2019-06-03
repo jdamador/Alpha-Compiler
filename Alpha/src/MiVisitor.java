@@ -30,10 +30,9 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitAssignSCAST(Parser2.AssignSCASTContext ctx) {
         TablaSimbolos.Ident exist = miTabla.buscar(ctx.ID().getText());
-
-        if ( exist  == null)
-            printError("SEMANTIC ERROR: Undefined identifier ",ctx.ID().getSymbol());
-        else {
+        if ( exist  == null){
+            printError("SEMANTIC ERROR: Undefined identifier Assign",ctx.ID().getSymbol());
+        } else {
             // It method use a function to save into symbols table but in this process check the types.
             boolean get = exist.setValue((Object) visit(ctx.expression()));
             if(!get)
@@ -71,6 +70,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         visit(ctx.declaration());
         visit(ctx.singleCommand());
         miTabla.closeScope();
+
         return null;
     }
 
@@ -112,7 +112,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     // Return value to set type.
     @Override
     public Object visitTypeDenoterAST(Parser2.TypeDenoterASTContext ctx){
-        return ctx.ID().getText();
+        return ctx.ID().getSymbol().getText() ;
     }
 
     @Override
@@ -134,8 +134,9 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     public Object visitIdPrimaryExpAST(Parser2.IdPrimaryExpASTContext ctx)
     {
         TablaSimbolos.Ident exist = miTabla.buscar(ctx.ID().getText());
-        if ( exist  == null)
-            printError("SEMANTIC ERROR: Undefined identifier ",ctx.ID().getSymbol());
+        if ( exist  == null){
+            printError("SEMANTIC ERROR: Undefined identifier ID ",ctx.ID().getSymbol());
+        }
         else
             return exist.valor;
         return null;
@@ -146,6 +147,10 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
         return ctx.STRING().getText().substring(1,ctx.STRING().getText().length()-1);
     }
 
+    @Override
+    public Object visitBoolPrimaryExpAST(Parser2.BoolPrimaryExpASTContext ctx){
+        return Boolean.parseBoolean(ctx.BOOL().getText());
+    }
     @Override
     public Object visitGroupPEAST(Parser2.GroupPEASTContext ctx) {
         return visit(ctx.expression());

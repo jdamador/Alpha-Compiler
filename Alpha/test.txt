@@ -1,14 +1,20 @@
 let
-    var i : int
+    var factorialDe : int
 in
     begin
-    let
-        var j: bool
-    in
-        print(i);
-    ;
-    while i > 3 do
-        print(i);
-    ;
-    print(i);
+        factorialDe := 4;
+        let
+            var fact : int
+        in
+            begin
+                fact := 1;
+                print("Calculando el factorial de " + factorialDe);
+                while factorialDe > 1 do
+                    begin
+                        fact := fact * factorialDe;
+                        factorialDe := factorialDe - 1
+                    end
+                 ;
+                 print("El factorial es [" + fact +"]")
+            end
     end

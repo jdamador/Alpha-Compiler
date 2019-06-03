@@ -15,7 +15,7 @@ singleCommand :     ID  ASSIGN expression                                       
         |           WHILE expression DO singleCommand                                     #whileSCAST
         |           LET declaration IN singleCommand                                      #letSCAST
         |           BEGIN command END                                                     #beginSCAST
-        |           PRINT PIZQ expression PDER  PyCOMA                                    #printSCAST;
+        |           PRINT PIZQ expression PDER                                    #printSCAST;
 
 declaration  : singleDeclaration (PyCOMA singleDeclaration)*                    #declarationAST;
 
@@ -27,11 +27,12 @@ typeDenoter: ID                                                                 
 expression : primaryExpression (operator primaryExpression)*                    #expressionAST;
 
 primaryExpression :     NUM                                                         #numPrimaryExpAST
+                    |   BOOL                                                        #boolPrimaryExpAST
                     |   ID                                                         #idPrimaryExpAST
                     |   (STRING | SPECIAL_STRING)                                 #stringPrimaryExpAST
-                    |   PIZQ expression PDER                                     #groupPEAST
-                    |   BOOL                                                        #boolPrimaryExpAST;
+                    |   PIZQ expression PDER                                     #groupPEAST;
 
-operator :          SUM | SUB | MUL | DIV | SMALLER | BIGGER | SMALEQ | BIGEQ | EQUAL  #operatorAST;
+
+operator :          SUM | SUB | MUL | DIV | SMALLER | BIGGER | SMALEQ | BIGEQ | EQUAL | AND | OR  #operatorAST;
 
 

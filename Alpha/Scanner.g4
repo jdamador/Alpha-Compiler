@@ -16,6 +16,8 @@ BIGGER  : '>';
 SMALEQ  : '>=';
 BIGEQ   : '<=';
 EQUAL   : '==';
+AND     : '&&';
+OR      : '||';
 
 
 
@@ -32,11 +34,11 @@ END     : 'end';
 CONST   : 'const';
 VAR     : 'var';
 PRINT   : 'print';
-
+BOOL    : 'true'| 'false';
 // Complex expressions
 ID : LETTER (LETTER|DIGIT)* ;
 NUM : DIGIT DIGIT* ;
-BOOL    : 'true'| 'false';
+
 STRING        :   '"' ('""'|~'"')* '"' ;
 SPECIAL_STRING        :   '"''\\''"' ('""'|~'"')* '\\''"''"' ;
 

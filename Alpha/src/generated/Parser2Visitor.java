@@ -116,6 +116,13 @@ public interface Parser2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNumPrimaryExpAST(Parser2.NumPrimaryExpASTContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code boolPrimaryExpAST}
+	 * labeled alternative in {@link Parser2#primaryExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolPrimaryExpAST(Parser2.BoolPrimaryExpASTContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code idPrimaryExpAST}
 	 * labeled alternative in {@link Parser2#primaryExpression}.
 	 * @param ctx the parse tree
@@ -136,13 +143,6 @@ public interface Parser2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitGroupPEAST(Parser2.GroupPEASTContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code boolPrimaryExpAST}
-	 * labeled alternative in {@link Parser2#primaryExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBoolPrimaryExpAST(Parser2.BoolPrimaryExpASTContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Parser2#operator}.
 	 * @param ctx the parse tree

@@ -18,9 +18,10 @@ public class Parser2 extends Parser {
 		new PredictionContextCache();
 	public static final int
 		PyCOMA=1, ASSIGN=2, PIZQ=3, PDER=4, VIR=5, DOSPUN=6, SUM=7, SUB=8, MUL=9, 
-		DIV=10, SMALLER=11, BIGGER=12, SMALEQ=13, BIGEQ=14, EQUAL=15, IF=16, WHILE=17, 
-		LET=18, THEN=19, ELSE=20, IN=21, DO=22, BEGIN=23, END=24, CONST=25, VAR=26, 
-		PRINT=27, ID=28, NUM=29, BOOL=30, STRING=31, SPECIAL_STRING=32, WS=33;
+		DIV=10, SMALLER=11, BIGGER=12, SMALEQ=13, BIGEQ=14, EQUAL=15, AND=16, 
+		OR=17, IF=18, WHILE=19, LET=20, THEN=21, ELSE=22, IN=23, DO=24, BEGIN=25, 
+		END=26, CONST=27, VAR=28, PRINT=29, BOOL=30, ID=31, NUM=32, STRING=33, 
+		SPECIAL_STRING=34, WS=35;
 	public static final int
 		RULE_program = 0, RULE_command = 1, RULE_singleCommand = 2, RULE_declaration = 3, 
 		RULE_singleDeclaration = 4, RULE_typeDenoter = 5, RULE_expression = 6, 
@@ -36,18 +37,19 @@ public class Parser2 extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "';'", "':='", "'('", "')'", "'~'", "':'", "'+'", "'-'", "'*'", 
-			"'/'", "'<'", "'>'", "'>='", "'<='", "'=='", "'if'", "'while'", "'let'", 
-			"'then'", "'else'", "'in'", "'do'", "'begin'", "'end'", "'const'", "'var'", 
-			"'print'"
+			"'/'", "'<'", "'>'", "'>='", "'<='", "'=='", "'&&'", "'||'", "'if'", 
+			"'while'", "'let'", "'then'", "'else'", "'in'", "'do'", "'begin'", "'end'", 
+			"'const'", "'var'", "'print'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "PyCOMA", "ASSIGN", "PIZQ", "PDER", "VIR", "DOSPUN", "SUM", "SUB", 
-			"MUL", "DIV", "SMALLER", "BIGGER", "SMALEQ", "BIGEQ", "EQUAL", "IF", 
-			"WHILE", "LET", "THEN", "ELSE", "IN", "DO", "BEGIN", "END", "CONST", 
-			"VAR", "PRINT", "ID", "NUM", "BOOL", "STRING", "SPECIAL_STRING", "WS"
+			"MUL", "DIV", "SMALLER", "BIGGER", "SMALEQ", "BIGEQ", "EQUAL", "AND", 
+			"OR", "IF", "WHILE", "LET", "THEN", "ELSE", "IN", "DO", "BEGIN", "END", 
+			"CONST", "VAR", "PRINT", "BOOL", "ID", "NUM", "STRING", "SPECIAL_STRING", 
+			"WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -266,7 +268,6 @@ public class Parser2 extends Parser {
 			return getRuleContext(ExpressionContext.class,0);
 		}
 		public TerminalNode PDER() { return getToken(Parser2.PDER, 0); }
-		public TerminalNode PyCOMA() { return getToken(Parser2.PyCOMA, 0); }
 		public PrintSCASTContext(SingleCommandContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -341,7 +342,7 @@ public class Parser2 extends Parser {
 		SingleCommandContext _localctx = new SingleCommandContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_singleCommand);
 		try {
-			setState(64);
+			setState(63);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
@@ -440,8 +441,6 @@ public class Parser2 extends Parser {
 				expression();
 				setState(61);
 				match(PDER);
-				setState(62);
-				match(PyCOMA);
 				}
 				break;
 			}
@@ -495,21 +494,21 @@ public class Parser2 extends Parser {
 			_localctx = new DeclarationASTContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(66);
+			setState(65);
 			singleDeclaration();
-			setState(71);
+			setState(70);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==PyCOMA) {
 				{
 				{
-				setState(67);
+				setState(66);
 				match(PyCOMA);
-				setState(68);
+				setState(67);
 				singleDeclaration();
 				}
 				}
-				setState(73);
+				setState(72);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -570,20 +569,20 @@ public class Parser2 extends Parser {
 		SingleDeclarationContext _localctx = new SingleDeclarationContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_singleDeclaration);
 		try {
-			setState(82);
+			setState(81);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case CONST:
 				_localctx = new ConstSTASTContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(74);
+				setState(73);
 				match(CONST);
-				setState(75);
+				setState(74);
 				match(ID);
-				setState(76);
+				setState(75);
 				match(VIR);
-				setState(77);
+				setState(76);
 				expression();
 				}
 				break;
@@ -591,13 +590,13 @@ public class Parser2 extends Parser {
 				_localctx = new VarASTContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(78);
+				setState(77);
 				match(VAR);
-				setState(79);
+				setState(78);
 				match(ID);
-				setState(80);
+				setState(79);
 				match(DOSPUN);
-				setState(81);
+				setState(80);
 				typeDenoter();
 				}
 				break;
@@ -644,7 +643,7 @@ public class Parser2 extends Parser {
 			_localctx = new TypeDenoterASTContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(84);
+			setState(83);
 			match(ID);
 			}
 		}
@@ -699,21 +698,21 @@ public class Parser2 extends Parser {
 			_localctx = new ExpressionASTContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(86);
+			setState(85);
 			primaryExpression();
-			setState(92);
+			setState(91);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SUM) | (1L << SUB) | (1L << MUL) | (1L << DIV) | (1L << SMALLER) | (1L << BIGGER) | (1L << SMALEQ) | (1L << BIGEQ) | (1L << EQUAL))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SUM) | (1L << SUB) | (1L << MUL) | (1L << DIV) | (1L << SMALLER) | (1L << BIGGER) | (1L << SMALEQ) | (1L << BIGEQ) | (1L << EQUAL) | (1L << AND) | (1L << OR))) != 0)) {
 				{
 				{
-				setState(87);
+				setState(86);
 				operator();
-				setState(88);
+				setState(87);
 				primaryExpression();
 				}
 				}
-				setState(94);
+				setState(93);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -797,20 +796,28 @@ public class Parser2 extends Parser {
 		enterRule(_localctx, 14, RULE_primaryExpression);
 		int _la;
 		try {
-			setState(103);
+			setState(102);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NUM:
 				_localctx = new NumPrimaryExpASTContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(95);
+				setState(94);
 				match(NUM);
+				}
+				break;
+			case BOOL:
+				_localctx = new BoolPrimaryExpASTContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(95);
+				match(BOOL);
 				}
 				break;
 			case ID:
 				_localctx = new IdPrimaryExpASTContext(_localctx);
-				enterOuterAlt(_localctx, 2);
+				enterOuterAlt(_localctx, 3);
 				{
 				setState(96);
 				match(ID);
@@ -819,7 +826,7 @@ public class Parser2 extends Parser {
 			case STRING:
 			case SPECIAL_STRING:
 				_localctx = new StringPrimaryExpASTContext(_localctx);
-				enterOuterAlt(_localctx, 3);
+				enterOuterAlt(_localctx, 4);
 				{
 				setState(97);
 				_la = _input.LA(1);
@@ -835,7 +842,7 @@ public class Parser2 extends Parser {
 				break;
 			case PIZQ:
 				_localctx = new GroupPEASTContext(_localctx);
-				enterOuterAlt(_localctx, 4);
+				enterOuterAlt(_localctx, 5);
 				{
 				setState(98);
 				match(PIZQ);
@@ -843,14 +850,6 @@ public class Parser2 extends Parser {
 				expression();
 				setState(100);
 				match(PDER);
-				}
-				break;
-			case BOOL:
-				_localctx = new BoolPrimaryExpASTContext(_localctx);
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(102);
-				match(BOOL);
 				}
 				break;
 			default:
@@ -878,6 +877,8 @@ public class Parser2 extends Parser {
 		public TerminalNode SMALEQ() { return getToken(Parser2.SMALEQ, 0); }
 		public TerminalNode BIGEQ() { return getToken(Parser2.BIGEQ, 0); }
 		public TerminalNode EQUAL() { return getToken(Parser2.EQUAL, 0); }
+		public TerminalNode AND() { return getToken(Parser2.AND, 0); }
+		public TerminalNode OR() { return getToken(Parser2.OR, 0); }
 		public OperatorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -896,9 +897,9 @@ public class Parser2 extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(105);
+			setState(104);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SUM) | (1L << SUB) | (1L << MUL) | (1L << DIV) | (1L << SMALLER) | (1L << BIGGER) | (1L << SMALEQ) | (1L << BIGEQ) | (1L << EQUAL))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SUM) | (1L << SUB) | (1L << MUL) | (1L << DIV) | (1L << SMALLER) | (1L << BIGGER) | (1L << SMALEQ) | (1L << BIGEQ) | (1L << EQUAL) | (1L << AND) | (1L << OR))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -920,33 +921,32 @@ public class Parser2 extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3#n\4\2\t\2\4\3\t\3"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3%m\4\2\t\2\4\3\t\3"+
 		"\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2\3"+
 		"\3\3\3\3\3\7\3\33\n\3\f\3\16\3\36\13\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
 		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
-		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4C\n\4\3\5\3\5\3\5\7\5H\n\5\f"+
-		"\5\16\5K\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6U\n\6\3\7\3\7\3\b\3\b"+
-		"\3\b\3\b\7\b]\n\b\f\b\16\b`\13\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\5\tj"+
-		"\n\t\3\n\3\n\3\n\2\2\13\2\4\6\b\n\f\16\20\22\2\4\3\2!\"\3\2\t\21\2r\2"+
-		"\24\3\2\2\2\4\27\3\2\2\2\6B\3\2\2\2\bD\3\2\2\2\nT\3\2\2\2\fV\3\2\2\2\16"+
-		"X\3\2\2\2\20i\3\2\2\2\22k\3\2\2\2\24\25\5\6\4\2\25\26\7\2\2\3\26\3\3\2"+
-		"\2\2\27\34\5\6\4\2\30\31\7\3\2\2\31\33\5\6\4\2\32\30\3\2\2\2\33\36\3\2"+
-		"\2\2\34\32\3\2\2\2\34\35\3\2\2\2\35\5\3\2\2\2\36\34\3\2\2\2\37 \7\36\2"+
-		"\2 !\7\4\2\2!C\5\16\b\2\"#\7\36\2\2#$\7\5\2\2$%\5\16\b\2%&\7\6\2\2&C\3"+
-		"\2\2\2\'(\7\22\2\2()\5\16\b\2)*\7\25\2\2*+\5\6\4\2+,\7\26\2\2,-\5\6\4"+
-		"\2-C\3\2\2\2./\7\23\2\2/\60\5\16\b\2\60\61\7\30\2\2\61\62\5\6\4\2\62C"+
-		"\3\2\2\2\63\64\7\24\2\2\64\65\5\b\5\2\65\66\7\27\2\2\66\67\5\6\4\2\67"+
-		"C\3\2\2\289\7\31\2\29:\5\4\3\2:;\7\32\2\2;C\3\2\2\2<=\7\35\2\2=>\7\5\2"+
-		"\2>?\5\16\b\2?@\7\6\2\2@A\7\3\2\2AC\3\2\2\2B\37\3\2\2\2B\"\3\2\2\2B\'"+
-		"\3\2\2\2B.\3\2\2\2B\63\3\2\2\2B8\3\2\2\2B<\3\2\2\2C\7\3\2\2\2DI\5\n\6"+
-		"\2EF\7\3\2\2FH\5\n\6\2GE\3\2\2\2HK\3\2\2\2IG\3\2\2\2IJ\3\2\2\2J\t\3\2"+
-		"\2\2KI\3\2\2\2LM\7\33\2\2MN\7\36\2\2NO\7\7\2\2OU\5\16\b\2PQ\7\34\2\2Q"+
-		"R\7\36\2\2RS\7\b\2\2SU\5\f\7\2TL\3\2\2\2TP\3\2\2\2U\13\3\2\2\2VW\7\36"+
-		"\2\2W\r\3\2\2\2X^\5\20\t\2YZ\5\22\n\2Z[\5\20\t\2[]\3\2\2\2\\Y\3\2\2\2"+
-		"]`\3\2\2\2^\\\3\2\2\2^_\3\2\2\2_\17\3\2\2\2`^\3\2\2\2aj\7\37\2\2bj\7\36"+
-		"\2\2cj\t\2\2\2de\7\5\2\2ef\5\16\b\2fg\7\6\2\2gj\3\2\2\2hj\7 \2\2ia\3\2"+
-		"\2\2ib\3\2\2\2ic\3\2\2\2id\3\2\2\2ih\3\2\2\2j\21\3\2\2\2kl\t\3\2\2l\23"+
-		"\3\2\2\2\b\34BIT^i";
+		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4B\n\4\3\5\3\5\3\5\7\5G\n\5\f\5\16"+
+		"\5J\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6T\n\6\3\7\3\7\3\b\3\b\3\b"+
+		"\3\b\7\b\\\n\b\f\b\16\b_\13\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\5\ti\n\t"+
+		"\3\n\3\n\3\n\2\2\13\2\4\6\b\n\f\16\20\22\2\4\3\2#$\3\2\t\23\2q\2\24\3"+
+		"\2\2\2\4\27\3\2\2\2\6A\3\2\2\2\bC\3\2\2\2\nS\3\2\2\2\fU\3\2\2\2\16W\3"+
+		"\2\2\2\20h\3\2\2\2\22j\3\2\2\2\24\25\5\6\4\2\25\26\7\2\2\3\26\3\3\2\2"+
+		"\2\27\34\5\6\4\2\30\31\7\3\2\2\31\33\5\6\4\2\32\30\3\2\2\2\33\36\3\2\2"+
+		"\2\34\32\3\2\2\2\34\35\3\2\2\2\35\5\3\2\2\2\36\34\3\2\2\2\37 \7!\2\2 "+
+		"!\7\4\2\2!B\5\16\b\2\"#\7!\2\2#$\7\5\2\2$%\5\16\b\2%&\7\6\2\2&B\3\2\2"+
+		"\2\'(\7\24\2\2()\5\16\b\2)*\7\27\2\2*+\5\6\4\2+,\7\30\2\2,-\5\6\4\2-B"+
+		"\3\2\2\2./\7\25\2\2/\60\5\16\b\2\60\61\7\32\2\2\61\62\5\6\4\2\62B\3\2"+
+		"\2\2\63\64\7\26\2\2\64\65\5\b\5\2\65\66\7\31\2\2\66\67\5\6\4\2\67B\3\2"+
+		"\2\289\7\33\2\29:\5\4\3\2:;\7\34\2\2;B\3\2\2\2<=\7\37\2\2=>\7\5\2\2>?"+
+		"\5\16\b\2?@\7\6\2\2@B\3\2\2\2A\37\3\2\2\2A\"\3\2\2\2A\'\3\2\2\2A.\3\2"+
+		"\2\2A\63\3\2\2\2A8\3\2\2\2A<\3\2\2\2B\7\3\2\2\2CH\5\n\6\2DE\7\3\2\2EG"+
+		"\5\n\6\2FD\3\2\2\2GJ\3\2\2\2HF\3\2\2\2HI\3\2\2\2I\t\3\2\2\2JH\3\2\2\2"+
+		"KL\7\35\2\2LM\7!\2\2MN\7\7\2\2NT\5\16\b\2OP\7\36\2\2PQ\7!\2\2QR\7\b\2"+
+		"\2RT\5\f\7\2SK\3\2\2\2SO\3\2\2\2T\13\3\2\2\2UV\7!\2\2V\r\3\2\2\2W]\5\20"+
+		"\t\2XY\5\22\n\2YZ\5\20\t\2Z\\\3\2\2\2[X\3\2\2\2\\_\3\2\2\2][\3\2\2\2]"+
+		"^\3\2\2\2^\17\3\2\2\2_]\3\2\2\2`i\7\"\2\2ai\7 \2\2bi\7!\2\2ci\t\2\2\2"+
+		"de\7\5\2\2ef\5\16\b\2fg\7\6\2\2gi\3\2\2\2h`\3\2\2\2ha\3\2\2\2hb\3\2\2"+
+		"\2hc\3\2\2\2hd\3\2\2\2i\21\3\2\2\2jk\t\3\2\2k\23\3\2\2\2\b\34AHS]h";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

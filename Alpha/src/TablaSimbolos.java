@@ -6,7 +6,7 @@ import java.util.LinkedList;
  */
 public class TablaSimbolos {
     private LinkedList<Object> tabla;
-    private int levelActual;
+    public int levelActual;
     // New identifier element.
     class Ident{ 
         Token tok;
@@ -17,13 +17,14 @@ public class TablaSimbolos {
             tok = t;
             type = tp;
             level = levelActual;
-            valor = new Object();
+            valor = null;
         }
 
         public boolean setValue(Object data) {
+
             // Set value to exist variable.
             if ((data instanceof String && this.type.equals("String")) || (data instanceof Integer && this.type.equals("Integer")) || (data instanceof Boolean && this.type.equals("Boolean"))){
-                this.valor = data;
+                valor = data;
                 return  true;
             }else{
                 return false;
@@ -45,8 +46,11 @@ public class TablaSimbolos {
 
     public Ident buscar(String nombre)
     {
+        //System.out.println("Look for {" + nombre + "} | table size ("+tabla.size()+")");
         Ident temp=null;
         for (int i = tabla.size() -1; i >= 0; i--) {
+            //Look for>
+            //System.out.println("Element one: ["+((Ident) tabla.get(i)).tok.getText()+"] element two ["+nombre+"]");
             if (((Ident) tabla.get(i)).tok.getText().equals(nombre)) {
                 temp = ((Ident) tabla.get(i));
                 break;
