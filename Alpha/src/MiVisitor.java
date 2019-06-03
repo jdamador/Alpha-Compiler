@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class MiVisitor extends Parser2BaseVisitor<Object> {
 
     private TablaSimbolos miTabla;
-    public ArrayList<String> errors =  new ArrayList<>();
+    public ArrayList<String> errors = new ArrayList<>();
 
     public MiVisitor() {
         this.miTabla = new TablaSimbolos();
@@ -35,13 +35,18 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     public Object visitAssignSCAST(Parser2.AssignSCASTContext ctx) {
 
         TablaSimbolos.Ident exist = miTabla.buscar(ctx.ID().getText());
-        if ( exist  == null){
-            printError("SEMANTIC ERROR: Undefined identifier Assign",ctx.ID().getSymbol());
+        if (exist == null) {
+            printError("SEMANTIC ERROR: Undefined identifier Assign ", ctx.ID().getSymbol());
         } else {
             // It method use a function to save into symbols table but in this process check the types.
             boolean get = exist.setValue((Object) visit(ctx.expression()));
-            if(!get)
-                printError("CONTEXTUAL ERROR: bad types in the assign ",ctx.ID().getSymbol());
+            if (!get){
+                if(exist.type.equals("Const"))
+                    printError("CONTEXTUAL ERROR: it is a const variable, It can't be reassign ", ctx.ID().getSymbol());
+                else
+                    printError("CONTEXTUAL ERROR: bad types in the assign ", ctx.ID().getSymbol());
+            }
+
         }
 
         return null;
@@ -102,7 +107,7 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     public Object visitDeclarationAST(Parser2.DeclarationASTContext ctx) {
 
         visit(ctx.singleDeclaration(0));
-        for (int i = 1; i < ctx.singleDeclaration().size(); i++){
+        for (int i = 1; i < ctx.singleDeclaration().size(); i++) {
             visit(ctx.singleDeclaration(i));
         }
 
@@ -112,10 +117,18 @@ public class MiVisitor extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitConstSTAST(Parser2.ConstSTASTContext ctx) {
 
-        visit(ctx.expression());
+        // Create a new const variable.
+        miTabla.insertar(ctx.ID().getSymbol(), "Const");
 
+        // Set their value.
+        var exist = miTabla.buscar(ctx.ID().getText());
+        var get = visit(ctx.expression());
+        if (exist != null) {
+            exist.setValueConst(get);
+        }
         return null;
     }
+
 
     @Override
     public Object visitVarAST(Parser2.VarASTContext ctx) {

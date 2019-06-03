@@ -23,7 +23,7 @@ public class Main {
 
         try {
             //input = new ANTLRInputStream(new FileReader("test.txt"));
-            input = CharStreams.fromFileName("test.txt");
+            input = CharStreams.fromFileName("t_constValue.txt");
             inst = new Scanner(input);
             tokens = new CommonTokenStream(inst);
             parser = new Parser2(tokens);
@@ -58,7 +58,7 @@ public class Main {
                         InterpreterVisitor iv = new InterpreterVisitor();
                         iv.visit(tree);
                     }
-                System.out.println("Compilation successful!!!");
+                //System.out.println("Compilation successful!!!");
             }
             catch(RecognitionException e) {
                 System.out.println("Error!!!");

@@ -1,0 +1,4 @@
+let
+  const tipoCambio ~ 595
+in 
+  print("Si tengo 40000 colones, en total son {"+ (40000 / tipoCambio)+ "} dólares ")

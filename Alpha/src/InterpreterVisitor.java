@@ -137,8 +137,15 @@ public class InterpreterVisitor extends Parser2BaseVisitor<Object> {
     @Override
     public Object visitConstSTAST(Parser2.ConstSTASTContext ctx) {
 
-        visit(ctx.expression());
+        // Create a new const variable.
+        miTabla.insertar(ctx.ID().getSymbol(),"Const");
 
+        // Set their value.
+        var exist = miTabla.buscar(ctx.ID().getText());
+        var get = visit(ctx.expression());
+        if(exist != null){
+            exist.setValueConst(get);
+        }
         return null;
     }
 

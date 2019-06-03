@@ -1,0 +1,23 @@
+let 
+    var level1 : int
+in  
+    begin
+        level1 := 1;
+        let
+            var level2 : int
+        in 
+            let
+                var level3 : int
+            in
+                let 
+                    var level4 : int
+                in 
+                    let 
+                        var level5 : int;
+                        var level6 : int
+                    in  
+                        begin
+                            level5 := 5;
+                            level6 := level1 + level5
+                        end
+    end

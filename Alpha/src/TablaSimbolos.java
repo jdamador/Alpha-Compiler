@@ -26,9 +26,12 @@ public class TablaSimbolos {
             if ((data instanceof String && this.type.equals("String")) || (data instanceof Integer && this.type.equals("Integer")) || (data instanceof Boolean && this.type.equals("Boolean"))){
                 valor = data;
                 return  true;
-            }else{
+            } else{
                 return false;
             }
+        }
+        public void setValueConst(Object data) {
+            this.valor = data;
         }
     }
 

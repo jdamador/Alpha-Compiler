@@ -1,0 +1,42 @@
+let
+  var runner : int;
+  var text : String;
+  var condision: bool
+in
+  begin
+    runner := 1;
+    text := "This example show all function for alpha compiler...";
+    let 
+      var sum : int;
+      var mult : int;
+      var rest : int;
+      var div : int
+    in
+      begin
+        sum := 0;
+        rest := 0;
+        mult := 1;
+        div := 10;
+        while (runner < 30) do
+          begin
+            sum := sum + runner;
+            rest := rest - runner;
+            runner := runner + 1
+          end
+        ;
+        if (sum > 0 || sum <100) then
+          print("La suma es esta entre 0  y 100, su valor es [:" + sum + "]")
+        else
+          print("La suma no esta entre 0  y 100, su valor es [:" + sum + "]")
+        ;
+        if (rest < 0 && sum > 0 ) then
+          print("Sum + la rest mayor o igual a cero y mul entre div mayor o igual a cero")
+        else
+          print("Sum + la rest mayor o igual a cero y mul entre div mayor o igual a cero")
+        ;
+        print("La suma es: " + sum);
+        print("La resta es: " + rest);
+        print("La division es: " + (sum / 4) );
+        print("La multiplicacion es: " + (sum * 4))
+      end
+  end
